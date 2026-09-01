@@ -1,0 +1,813 @@
+Je veux que tu développes une application web complète, fonctionnelle,
+responsive et déployable en ligne dans le cadre d'un projet universitaire
+de sécurité réseau.
+
+==================================================
+1. INFORMATIONS DU PROJET
+==================================================
+
+Titre :
+PLATEFORME DE SENSIBILISATION AU PHISHING
+
+Groupe :
+GROUPE 17 – GOUVERNANCE DE SÉCURITÉ
+
+Membres :
+- BAMBULA THSIAKA-NJILA GODWINE
+- MEKA KUMA PROSPER
+- MOINDO ASOMBE MOISE
+- NYAMASHI KUMAKAMBA MARTINE
+
+Description :
+L'objectif est de concevoir une plateforme web pédagogique permettant
+de sensibiliser les utilisateurs aux risques liés au phishing à travers
+des campagnes de phishing simulées, des quiz, un système de score,
+des recommandations et des statistiques.
+
+IMPORTANT :
+Cette application est exclusivement pédagogique.
+Elle ne doit jamais collecter de vrais mots de passe ou de données
+bancaires et ne doit jamais être utilisée pour envoyer de véritables
+campagnes malveillantes.
+
+Toutes les données utilisées pour les simulations doivent être
+fictives, synthétiques ou anonymisées.
+
+==================================================
+2. TECHNOLOGIES
+==================================================
+
+Utilise de préférence :
+
+- Front-end : HTML5, CSS3 et JavaScript
+- Si nécessaire, utiliser un framework moderne léger
+- Firebase Authentication pour l'authentification
+- Firebase Firestore pour la base de données
+- Firebase Security Rules pour la protection des données
+- MFA pour les administrateurs
+- GitHub pour le dépôt du code
+- Vercel ou Firebase Hosting pour le déploiement
+
+L'application doit être accessible en HTTPS après déploiement.
+
+Ne mets JAMAIS de mot de passe, clé privée, token ou secret directement
+dans le code source.
+
+Utilise des variables d'environnement pour les secrets.
+
+==================================================
+3. DESIGN DE L'APPLICATION
+==================================================
+
+Créer une interface moderne, professionnelle, claire et responsive.
+
+L'application doit fonctionner correctement sur :
+
+- ordinateur
+- tablette
+- smartphone
+
+Créer une barre de navigation contenant notamment :
+
+- Accueil
+- Sensibilisation
+- Campagnes
+- Quiz
+- Résultats
+- Recommandations
+- Connexion
+
+L'espace administrateur doit avoir une interface différente et protégée.
+
+==================================================
+4. PAGE D'ACCUEIL
+==================================================
+
+Créer une page d'accueil professionnelle présentant :
+
+Titre :
+"PhishGuard"
+
+Sous-titre :
+"Plateforme de sensibilisation au phishing"
+
+Présenter brièvement :
+
+- Qu'est-ce que le phishing ?
+- Pourquoi est-il dangereux ?
+- Comment reconnaître une tentative de phishing ?
+- Pourquoi la sensibilisation est importante ?
+
+Ajouter un bouton :
+
+"Commencer la sensibilisation"
+
+Ajouter également des statistiques générales fictives ou calculées,
+par exemple :
+
+- campagnes réalisées
+- utilisateurs sensibilisés
+- taux moyen de réussite
+- quiz réalisés
+
+Ne jamais afficher de données personnelles.
+
+==================================================
+5. ESPACE UTILISATEUR
+==================================================
+
+Créer un système d'authentification.
+
+Un utilisateur peut :
+
+- créer un compte de démonstration ;
+- se connecter ;
+- se déconnecter ;
+- consulter son tableau de bord ;
+- consulter les campagnes ;
+- effectuer des simulations ;
+- répondre aux quiz ;
+- consulter son score ;
+- consulter ses recommandations.
+
+Après connexion, afficher un tableau de bord contenant :
+
+- nombre de campagnes effectuées ;
+- nombre de quiz réalisés ;
+- dernier score ;
+- niveau de sensibilisation ;
+- recommandations.
+
+==================================================
+6. CAMPAGNES DE PHISHING SIMULÉES
+==================================================
+
+Créer une section "Campagnes".
+
+Créer plusieurs scénarios fictifs.
+
+Exemples :
+
+Campagne 1 :
+"Vérification urgente de votre compte"
+
+Campagne 2 :
+"Notification de sécurité"
+
+Campagne 3 :
+"Réinitialisation de mot de passe"
+
+Campagne 4 :
+"Message de livraison"
+
+Campagne 5 :
+"Fausse récompense"
+
+IMPORTANT :
+Les scénarios doivent être clairement pédagogiques et fictifs.
+
+NE PAS demander à l'utilisateur de saisir :
+
+- véritable mot de passe ;
+- numéro de carte bancaire ;
+- code bancaire ;
+- informations personnelles sensibles.
+
+L'utilisateur doit uniquement analyser le scénario.
+
+Pour chaque campagne, présenter :
+
+- expéditeur fictif ;
+- objet ;
+- contenu du message ;
+- lien fictif non dangereux ;
+- indices suspects.
+
+Demander :
+
+"Ce message est-il légitime ou constitue-t-il une tentative de phishing ?"
+
+Choix :
+
+- Légitime
+- Phishing
+
+Après la réponse, afficher une explication pédagogique.
+
+==================================================
+7. QUIZ
+==================================================
+
+Créer une section "Quiz de sensibilisation".
+
+Créer au minimum 10 questions.
+
+Chaque question doit avoir plusieurs choix.
+
+Exemples :
+
+1. Quel élément peut indiquer un phishing ?
+2. Pourquoi faut-il vérifier l'adresse de l'expéditeur ?
+3. Que faire lorsqu'un message demande une action urgente ?
+4. Pourquoi faut-il vérifier un lien avant de cliquer ?
+5. Peut-on faire confiance à un message uniquement parce qu'il
+   contient le logo d'une organisation ?
+6. Que faire lorsqu'une pièce jointe paraît suspecte ?
+7. Qu'est-ce que l'ingénierie sociale ?
+8. Pourquoi utiliser l'authentification multifacteur ?
+9. Comment signaler un message suspect ?
+10. Quelle est la meilleure réaction face à un message douteux ?
+
+Afficher une question à la fois.
+
+Permettre de passer à la question suivante.
+
+À la fin :
+
+Calculer automatiquement le score.
+
+==================================================
+8. SYSTÈME DE SCORE
+==================================================
+
+Le score doit être calculé sur 100.
+
+Exemple :
+
+10 questions
+8 bonnes réponses
+
+Score = 80/100
+
+Afficher :
+
+- score ;
+- nombre de bonnes réponses ;
+- nombre de mauvaises réponses ;
+- pourcentage ;
+- niveau.
+
+Utiliser les niveaux suivants :
+
+0–39 :
+"Faible"
+
+40–59 :
+"Moyen"
+
+60–79 :
+"Bon"
+
+80–100 :
+"Très bon"
+
+Afficher une explication adaptée au niveau obtenu.
+
+==================================================
+9. RECOMMANDATIONS
+==================================================
+
+Créer un système de recommandations personnalisées.
+
+Pour un score faible :
+
+"Votre niveau de sensibilisation est faible.
+Renforcez votre vigilance face aux liens suspects,
+aux pièces jointes inconnues et aux demandes urgentes."
+
+Pour un score moyen :
+
+"Votre niveau est moyen.
+Apprenez à vérifier systématiquement l'expéditeur,
+les liens et le contexte du message."
+
+Pour un bon score :
+
+"Bon niveau de sensibilisation.
+Continuez à appliquer les bonnes pratiques de sécurité."
+
+Pour un très bon score :
+
+"Excellent niveau.
+Continuez à vérifier les expéditeurs, les liens et
+les demandes inhabituelles."
+
+Les recommandations doivent être stockées dans Firebase.
+
+==================================================
+10. ESPACE ADMINISTRATEUR
+==================================================
+
+Créer un espace :
+
+"/admin"
+
+Cette page doit être totalement protégée.
+
+Un utilisateur normal ne doit jamais pouvoir accéder aux fonctions
+administratives.
+
+L'administrateur peut :
+
+- créer une campagne ;
+- modifier une campagne ;
+- supprimer une campagne ;
+- créer des questions ;
+- modifier des questions ;
+- supprimer des questions ;
+- consulter les statistiques ;
+- gérer les utilisateurs ;
+- consulter les résultats selon les autorisations prévues.
+
+==================================================
+11. AUTHENTIFICATION MULTIFACTEUR (MFA)
+==================================================
+
+L'accès administrateur doit utiliser une authentification multifacteur.
+
+Processus :
+
+Étape 1 :
+Email + mot de passe
+
+Étape 2 :
+Second facteur
+
+Étape 3 :
+Accès au tableau de bord administrateur
+
+Ne jamais afficher ou stocker le véritable code MFA.
+
+Prévoir une configuration compatible avec Firebase Authentication
+et ses mécanismes MFA.
+
+==================================================
+12. GESTION DES RÔLES
+==================================================
+
+Créer deux rôles :
+
+"user"
+"admin"
+
+Un utilisateur possède le rôle :
+
+"user"
+
+Un administrateur possède le rôle :
+
+"admin"
+
+Les autorisations doivent être vérifiées côté serveur / Firebase
+Security Rules et pas uniquement dans l'interface.
+
+IMPORTANT :
+Cacher simplement le bouton "Admin" ne constitue PAS une mesure
+de sécurité suffisante.
+
+Un utilisateur normal qui tente d'accéder directement à une
+ressource administrative doit recevoir un refus d'accès.
+
+==================================================
+13. CONFIDENTIALITÉ DES RÉSULTATS
+==================================================
+
+Un utilisateur doit uniquement pouvoir consulter ses propres résultats.
+
+L'utilisateur A ne doit jamais pouvoir consulter le résultat
+de l'utilisateur B.
+
+Les statistiques générales peuvent être affichées sous forme
+anonymisée.
+
+Exemple :
+
+"72 % des participants ont obtenu un score supérieur à 70/100."
+
+Ne pas afficher publiquement :
+
+"Jean Dupont : 72/100"
+
+==================================================
+14. FIREBASE FIRESTORE
+==================================================
+
+Créer une structure Firestore similaire à :
+
+users
+  userId
+    name
+    email
+    role
+    createdAt
+
+campaigns
+  campaignId
+    title
+    description
+    sender
+    subject
+    content
+    correctAnswer
+    explanation
+    createdAt
+
+quizzes
+  quizId
+    question
+    options
+    correctAnswer
+    explanation
+
+results
+  resultId
+    userId
+    score
+    correctAnswers
+    totalQuestions
+    date
+
+recommendations
+  recommendationId
+    minScore
+    maxScore
+    message
+
+Adapter cette structure aux bonnes pratiques Firestore.
+
+==================================================
+15. FIREBASE SECURITY RULES
+==================================================
+
+Créer des règles de sécurité permettant notamment :
+
+- utilisateur authentifié → accès aux fonctionnalités utilisateur ;
+- utilisateur → lecture de ses propres résultats uniquement ;
+- utilisateur → impossible de modifier son rôle ;
+- utilisateur → impossible d'accéder aux données administratives ;
+- administrateur → accès aux fonctions administratives autorisées ;
+- empêcher les utilisateurs non authentifiés d'accéder aux données
+  protégées.
+
+Les règles doivent être réellement configurées et pas seulement
+commentées dans le code.
+
+==================================================
+16. VALIDATION DES DONNÉES
+==================================================
+
+Valider toutes les données saisies dans les formulaires.
+
+Vérifier notamment :
+
+- format des emails ;
+- champs obligatoires ;
+- longueur des champs ;
+- contenu des campagnes ;
+- questions ;
+- réponses.
+
+Afficher des messages d'erreur compréhensibles.
+
+Ne jamais faire confiance directement aux données envoyées par
+l'utilisateur.
+
+==================================================
+17. PROTECTION DES SESSIONS
+==================================================
+
+Mettre en place une gestion correcte de l'authentification.
+
+Les pages protégées doivent vérifier :
+
+1. si l'utilisateur est authentifié ;
+2. son rôle ;
+3. ses permissions.
+
+Prévoir :
+
+- déconnexion ;
+- expiration appropriée des sessions selon le service utilisé ;
+- redirection vers la connexion si nécessaire.
+
+==================================================
+18. HTTPS / TLS
+==================================================
+
+L'application doit être déployable en HTTPS.
+
+Après déploiement, toutes les pages doivent être accessibles
+via HTTPS.
+
+Le README devra expliquer que HTTPS/TLS protège les communications
+entre le navigateur et l'application.
+
+==================================================
+19. TESTS DE SÉCURITÉ
+==================================================
+
+Créer une section de tests.
+
+Les tests doivent rester strictement confinés à l'application
+du groupe.
+
+Tester au minimum :
+
+TEST 1 :
+Accéder à /admin sans connexion.
+
+Résultat attendu :
+Accès refusé.
+
+TEST 2 :
+Utilisateur normal → /admin.
+
+Résultat attendu :
+Accès refusé.
+
+TEST 3 :
+Utilisateur A → résultat de l'utilisateur B.
+
+Résultat attendu :
+Accès refusé.
+
+TEST 4 :
+Modification du rôle d'un utilisateur depuis le navigateur.
+
+Résultat attendu :
+Opération refusée par les règles de sécurité.
+
+TEST 5 :
+Soumission d'un formulaire avec données invalides.
+
+Résultat attendu :
+Erreur de validation.
+
+TEST 6 :
+Vérifier que les secrets ne sont pas présents dans GitHub.
+
+TEST 7 :
+Vérifier que l'application est accessible en HTTPS.
+
+==================================================
+20. DONNÉES ET ÉTHIQUE
+==================================================
+
+IMPORTANT :
+
+Utiliser uniquement :
+
+- données fictives ;
+- données synthétiques ;
+- données anonymisées.
+
+Interdictions :
+
+- collecter de vrais mots de passe ;
+- collecter des données bancaires ;
+- envoyer de vrais emails de phishing ;
+- scanner des systèmes externes ;
+- attaquer des sites externes ;
+- collecter des données personnelles réelles ;
+- utiliser des logiciels malveillants.
+
+Les tests d'attaque doivent être réalisés uniquement sur
+notre propre application.
+
+==================================================
+21. README.MD
+==================================================
+
+Créer automatiquement un README.md professionnel comprenant :
+
+1. Nom du projet
+2. Membres du groupe
+3. Contexte
+4. Problématique
+5. Objectifs
+6. Fonctionnalités
+7. Architecture
+8. Technologies utilisées
+9. Mécanismes de sécurité
+10. Structure de Firebase
+11. Installation
+12. Configuration
+13. Variables d'environnement
+14. Déploiement
+15. Tests
+16. Résultats
+17. Captures d'écran
+18. Limites
+19. Considérations éthiques
+
+==================================================
+22. GITHUB
+==================================================
+
+Préparer le projet pour GitHub.
+
+Créer un .gitignore adapté.
+
+Le .gitignore doit notamment exclure :
+
+.env
+.env.local
+node_modules/
+
+Ne jamais envoyer les secrets sur GitHub.
+
+==================================================
+23. DÉPLOIEMENT
+==================================================
+
+Préparer le projet pour un déploiement sur :
+
+Vercel ou Firebase Hosting.
+
+L'application doit être accessible publiquement.
+
+Le déploiement doit utiliser HTTPS.
+
+Prévoir une configuration simple permettant de déployer
+le projet sans exposer les secrets.
+
+==================================================
+24. STATISTIQUES
+==================================================
+
+Créer un tableau de bord administrateur affichant des statistiques
+globales :
+
+- nombre d'utilisateurs ;
+- nombre de campagnes ;
+- nombre de quiz réalisés ;
+- score moyen ;
+- taux de réussite ;
+- répartition des niveaux.
+
+Les données individuelles doivent rester confidentielles.
+
+Utiliser des graphiques simples et lisibles.
+
+==================================================
+25. INTERFACE ADMIN
+==================================================
+
+Créer un tableau de bord avec des cartes :
+
+Utilisateurs
+Campagnes
+Quiz
+Score moyen
+
+Ajouter des menus :
+
+Dashboard
+Campagnes
+Quiz
+Utilisateurs
+Résultats
+Statistiques
+Paramètres
+Déconnexion
+
+==================================================
+26. INTERFACE UTILISATEUR
+==================================================
+
+Créer un tableau de bord moderne contenant :
+
+"Bienvenue sur PhishGuard"
+
+Cartes :
+
+Mon score
+Quiz réalisés
+Campagnes réalisées
+Niveau
+
+Ajouter :
+
+"Commencer une nouvelle campagne"
+
+et
+
+"Tester mes connaissances"
+
+==================================================
+27. EXPÉRIENCE UTILISATEUR
+==================================================
+
+L'application doit être :
+
+- simple ;
+- intuitive ;
+- rapide ;
+- responsive ;
+- professionnelle ;
+- adaptée à une démonstration devant un jury.
+
+Utiliser des messages de succès et d'erreur clairs.
+
+Prévoir des confirmations avant les suppressions.
+
+==================================================
+28. LIVRABLE FINAL
+==================================================
+
+Je veux que tu produises une application réellement fonctionnelle,
+et non une simple maquette.
+
+À la fin, vérifie :
+
+[ ] Interface fonctionnelle
+[ ] Authentification
+[ ] Gestion des rôles
+[ ] MFA administrateur
+[ ] Campagnes simulées
+[ ] Quiz
+[ ] Calcul du score
+[ ] Recommandations
+[ ] Statistiques
+[ ] Confidentialité des résultats
+[ ] Validation des entrées
+[ ] Firebase Firestore
+[ ] Firebase Security Rules
+[ ] HTTPS
+[ ] Protection des secrets
+[ ] README
+[ ] .gitignore
+[ ] Tests de sécurité
+[ ] Déploiement
+
+==================================================
+29. IMPORTANT : NE PAS SIMULER LES FONCTIONNALITÉS
+==================================================
+
+Ne crée pas de faux boutons qui ne font rien.
+
+Chaque fonctionnalité affichée dans l'interface doit être reliée
+à une véritable logique.
+
+Si une fonctionnalité nécessite une configuration externe,
+explique précisément ce que je dois configurer.
+
+Si une configuration Firebase est nécessaire, indique étape par étape
+où trouver les paramètres et comment les renseigner.
+
+Ne jamais inventer de clés ou de secrets.
+
+==================================================
+30. MODE DE TRAVAIL
+==================================================
+
+Commence par créer la structure complète du projet.
+
+Ensuite :
+
+1. créer l'interface ;
+2. configurer l'authentification ;
+3. configurer Firebase ;
+4. créer Firestore ;
+5. créer les règles de sécurité ;
+6. créer les rôles ;
+7. mettre en place le MFA administrateur ;
+8. développer les campagnes ;
+9. développer les quiz ;
+10. développer le système de score ;
+11. développer les recommandations ;
+12. développer les statistiques ;
+13. ajouter les tests ;
+14. préparer GitHub ;
+15. préparer le déploiement ;
+16. vérifier l'ensemble.
+
+À chaque étape, vérifie que le code fonctionne avant de passer
+à l'étape suivante.
+
+Si une erreur apparaît, corrige-la au lieu de simplement la signaler.
+
+==================================================
+OBJECTIF FINAL
+==================================================
+
+Je veux obtenir une plateforme universitaire de sensibilisation
+au phishing suffisamment fonctionnelle pour être présentée devant
+un professeur ou un jury.
+
+Le projet doit démontrer concrètement l'utilisation d'au moins
+trois mécanismes de sécurité, notamment :
+
+1. HTTPS/TLS
+2. Authentification et autorisation
+3. Authentification multifacteur (MFA)
+
+Et également :
+
+- protection des sessions ;
+- validation des entrées ;
+- confidentialité des résultats ;
+- protection des secrets ;
+- règles de sécurité Firebase.
+
+Le projet doit rester strictement pédagogique, éthique et légal.

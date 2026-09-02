@@ -10,6 +10,14 @@ servers:
 tags:
   - name: health
     description: Health operations
+  - name: campaigns
+    description: Educational phishing simulation scenarios
+  - name: quiz
+    description: Awareness quiz and scoring
+  - name: dashboard
+    description: User-facing progress and recommendations
+  - name: admin
+    description: Protected administrative operations
 paths:
   /healthz:
     get:
@@ -24,7 +32,238 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+  /campaigns:
+    get:
+      operationId: listCampaigns
+      tags: [campaigns]
+      summary: List educational campaigns
+      responses:
+        "200":
+          description: Available fictional scenarios
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Campaign"
+    post:
+      operationId: createCampaign
+      tags: [admin]
+      summary: Create a campaign
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CampaignInput"
+      responses:
+        "201":
+          description: Created campaign
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Campaign"
+        "400":
+          description: Invalid campaign
+  /campaigns/{id}:
+    get:
+      operationId: getCampaign
+      tags: [campaigns]
+      summary: Get one educational campaign
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      responses:
+        "200":
+          description: Campaign
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Campaign"
+        "404":
+          description: Campaign not found
+    patch:
+      operationId: updateCampaign
+      tags: [admin]
+      summary: Update a campaign
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CampaignUpdate"
+      responses:
+        "200":
+          description: Updated campaign
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Campaign"
+        "400":
+          description: Invalid campaign
+        "404":
+          description: Campaign not found
+    delete:
+      operationId: deleteCampaign
+      tags: [admin]
+      summary: Delete a campaign
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      responses:
+        "204":
+          description: Campaign deleted
+        "404":
+          description: Campaign not found
+  /campaigns/{id}/attempt:
+    post:
+      operationId: submitCampaignAttempt
+      tags: [campaigns]
+      summary: Analyze a campaign scenario
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CampaignAttemptInput"
+      responses:
+        "200":
+          description: Educational feedback
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CampaignAttemptResult"
+        "404":
+          description: Campaign not found
+  /quiz:
+    get:
+      operationId: listQuizQuestions
+      tags: [quiz]
+      summary: List quiz questions
+      responses:
+        "200":
+          description: Quiz questions without answer keys
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/QuizQuestion"
+    post:
+      operationId: createQuizQuestion
+      tags: [admin]
+      summary: Create a quiz question
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/QuizQuestionInput"
+      responses:
+        "201":
+          description: Created quiz question
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/QuizQuestion"
+  /quiz/{id}:
+    patch:
+      operationId: updateQuizQuestion
+      tags: [admin]
+      summary: Update a quiz question
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/QuizQuestionUpdate"
+      responses:
+        "200":
+          description: Updated quiz question
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/QuizQuestion"
+    delete:
+      operationId: deleteQuizQuestion
+      tags: [admin]
+      summary: Delete a quiz question
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      responses:
+        "204":
+          description: Quiz question deleted
+  /quiz/submit:
+    post:
+      operationId: submitQuiz
+      tags: [quiz]
+      summary: Grade a completed quiz
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/QuizSubmission"
+      responses:
+        "200":
+          description: Score and recommendation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/QuizResult"
+        "400":
+          description: Invalid quiz submission
+  /dashboard:
+    get:
+      operationId: getDashboard
+      tags: [dashboard]
+      summary: Get progress dashboard
+      responses:
+        "200":
+          description: User dashboard summary
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Dashboard"
+  /recommendations:
+    get:
+      operationId: listRecommendations
+      tags: [dashboard]
+      summary: List awareness recommendations
+      responses:
+        "200":
+          description: Recommendations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Recommendation"
+  /admin/stats:
+    get:
+      operationId: getAdminStats
+      tags: [admin]
+      summary: Get anonymized administrative statistics
+      responses:
+        "200":
+          description: Anonymized platform metrics
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminStats"
 components:
+  parameters:
+    Id:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+        minLength: 1
   schemas:
     HealthStatus:
       type: object
@@ -33,4 +272,157 @@ components:
           type: string
       required:
         - status
+    Campaign:
+      type: object
+      required: [id, title, description, sender, subject, content, link, suspiciousClues, correctAnswer, explanation, category]
+      properties:
+        id: { type: string }
+        title: { type: string }
+        description: { type: string }
+        sender: { type: string }
+        subject: { type: string }
+        content: { type: string }
+        link: { type: string }
+        suspiciousClues:
+          type: array
+          items: { type: string }
+        correctAnswer:
+          type: string
+          enum: [legitimate, phishing]
+        explanation: { type: string }
+        category: { type: string }
+        difficulty:
+          type: string
+          enum: [beginner, intermediate, advanced]
+        createdAt: { type: string }
+    CampaignInput:
+      type: object
+      required: [title, description, sender, subject, content, link, suspiciousClues, correctAnswer, explanation, category]
+      properties:
+        title: { type: string, minLength: 3, maxLength: 120 }
+        description: { type: string, minLength: 10, maxLength: 500 }
+        sender: { type: string, minLength: 3, maxLength: 160 }
+        subject: { type: string, minLength: 3, maxLength: 160 }
+        content: { type: string, minLength: 10, maxLength: 3000 }
+        link: { type: string, minLength: 3, maxLength: 300 }
+        suspiciousClues:
+          type: array
+          minItems: 1
+          maxItems: 8
+          items: { type: string, minLength: 3, maxLength: 200 }
+        correctAnswer:
+          type: string
+          enum: [legitimate, phishing]
+        explanation: { type: string, minLength: 10, maxLength: 1000 }
+        category: { type: string, minLength: 3, maxLength: 80 }
+        difficulty:
+          type: string
+          enum: [beginner, intermediate, advanced]
+    CampaignUpdate:
+      allOf:
+        - $ref: "#/components/schemas/CampaignInput"
+    CampaignAttemptInput:
+      type: object
+      required: [answer]
+      properties:
+        answer:
+          type: string
+          enum: [legitimate, phishing]
+    CampaignAttemptResult:
+      type: object
+      required: [correct, answer, correctAnswer, explanation]
+      properties:
+        correct: { type: boolean }
+        answer: { type: string }
+        correctAnswer: { type: string }
+        explanation: { type: string }
+    QuizQuestion:
+      type: object
+      required: [id, question, options, category]
+      properties:
+        id: { type: string }
+        question: { type: string }
+        options:
+          type: array
+          items: { type: string }
+        category: { type: string }
+        explanation: { type: string }
+    QuizQuestionInput:
+      type: object
+      required: [question, options, correctAnswer, category, explanation]
+      properties:
+        question: { type: string, minLength: 10, maxLength: 500 }
+        options:
+          type: array
+          minItems: 2
+          maxItems: 5
+          items: { type: string, minLength: 1, maxLength: 240 }
+        correctAnswer: { type: number, minimum: 0, maximum: 4 }
+        category: { type: string, minLength: 3, maxLength: 80 }
+        explanation: { type: string, minLength: 10, maxLength: 500 }
+    QuizQuestionUpdate:
+      allOf:
+        - $ref: "#/components/schemas/QuizQuestionInput"
+    QuizSubmission:
+      type: object
+      required: [answers]
+      properties:
+        answers:
+          type: array
+          items:
+            type: object
+            required: [questionId, answerIndex]
+            properties:
+              questionId: { type: string }
+              answerIndex: { type: number, minimum: 0, maximum: 4 }
+    QuizResult:
+      type: object
+      required: [score, correctAnswers, totalQuestions, level, recommendation, completedAt]
+      properties:
+        score: { type: number, minimum: 0, maximum: 100 }
+        correctAnswers: { type: number, minimum: 0 }
+        totalQuestions: { type: number, minimum: 0 }
+        level:
+          type: string
+          enum: [Faible, Moyen, Bon, "Très bon"]
+        recommendation: { type: string }
+        completedAt: { type: string }
+    Recommendation:
+      type: object
+      required: [id, title, message, focus, priority]
+      properties:
+        id: { type: string }
+        title: { type: string }
+        message: { type: string }
+        focus: { type: string }
+        priority:
+          type: string
+          enum: [high, medium, low]
+    Dashboard:
+      type: object
+      required: [campaignsCompleted, quizzesCompleted, latestScore, level, streak, nextAction]
+      properties:
+        campaignsCompleted: { type: number }
+        quizzesCompleted: { type: number }
+        latestScore: { type: number }
+        level: { type: string }
+        streak: { type: number }
+        nextAction: { type: string }
+    AdminStats:
+      type: object
+      required: [users, campaigns, quizzesCompleted, averageScore, successRate, levels]
+      properties:
+        users: { type: number }
+        campaigns: { type: number }
+        quizzesCompleted: { type: number }
+        averageScore: { type: number }
+        successRate: { type: number }
+        levels:
+          type: array
+          items:
+            type: object
+            required: [label, value]
+            properties:
+              label: { type: string }
+              value: { type: number }
 

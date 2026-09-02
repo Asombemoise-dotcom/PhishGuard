@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "PhishGuard"
+description = "Plateforme web universitaire de sensibilisation au phishing avec simulations pédagogiques, quiz, scores, recommandations, authentification sécurisée et espace administrateur."
+version = "1.0.0"
+id = "artifacts/phishguard"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 23450
+
+[services.development]
+run = "pnpm --filter @workspace/phishguard run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/phishguard", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/phishguard/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "23450"
+BASE_PATH = "/"

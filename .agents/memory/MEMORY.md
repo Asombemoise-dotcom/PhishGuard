@@ -1,0 +1,1 @@
+- [Build environment](build-environment.md) — PhishGuard validation needs the workflow’s PORT and BASE_PATH values.

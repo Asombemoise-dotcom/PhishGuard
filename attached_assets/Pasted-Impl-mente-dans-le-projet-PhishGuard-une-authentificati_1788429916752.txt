@@ -1,0 +1,100 @@
+Implémente dans le projet PhishGuard une authentification
+administrateur en deux étapes.
+
+ÉTAPE 1 :
+L'administrateur se connecte avec son adresse e-mail et son mot
+de passe via le système d'authentification existant.
+
+ÉTAPE 2 :
+Après authentification réussie, génère côté serveur un code
+aléatoire de 6 chiffres et envoie-le à l'adresse e-mail de
+l'administrateur.
+
+L'accès au tableau de bord administrateur ne doit être accordé
+qu'après validation de ce code.
+
+RÈGLES DE SÉCURITÉ :
+
+- Le code doit être généré côté serveur.
+- Le code expire après 5 minutes.
+- Le code ne peut être utilisé qu'une seule fois.
+- Ne jamais stocker le code en clair.
+- Stocker uniquement son hash.
+- Ne jamais afficher le code dans les logs.
+- Limiter les tentatives de vérification.
+- Limiter les demandes répétées de nouveaux codes.
+- Ne jamais mettre de mot de passe SMTP, clé API ou autre secret
+  dans le code source.
+- Utiliser des variables d'environnement.
+- La vérification finale doit être effectuée côté serveur.
+- Un utilisateur normal ne doit jamais pouvoir accéder à
+  l'espace administrateur en modifiant l'URL ou le JavaScript.
+
+INTERFACE :
+
+Après la première authentification, afficher :
+
+"Vérification en deux étapes"
+
+"Un code de confirmation a été envoyé à votre adresse e-mail."
+
+Champ :
+"Code à 6 chiffres"
+
+Bouton :
+"Vérifier le code"
+
+Bouton secondaire :
+"Renvoyer un code"
+
+Afficher un compte à rebours de 5 minutes.
+
+MESSAGES :
+
+Code correct :
+"Vérification réussie. Bienvenue dans l'espace administrateur."
+
+Code incorrect :
+"Code incorrect."
+
+Code expiré :
+"Ce code a expiré. Demandez un nouveau code."
+
+Trop de tentatives :
+"Trop de tentatives. Veuillez patienter."
+
+EMAIL :
+
+Objet :
+"Code de vérification PhishGuard"
+
+Message en français indiquant que le code est temporaire,
+qu'il expire dans 5 minutes et qu'il ne faut jamais le partager.
+
+IMPORTANT :
+
+Conserve toute l'interface actuelle de PhishGuard.
+
+Ne recrée pas le projet.
+
+Ne supprime aucune fonctionnalité existante.
+
+Utilise uniquement des données fictives pour les campagnes
+de phishing.
+
+Ne demande jamais de vrais mots de passe dans les simulations.
+
+Après l'implémentation, teste :
+
+1. mot de passe correct ;
+2. mot de passe incorrect ;
+3. réception du code par e-mail ;
+4. code correct ;
+5. code incorrect ;
+6. code expiré ;
+7. réutilisation d'un ancien code ;
+8. trop nombreuses tentatives ;
+9. accès direct à /admin sans authentification ;
+10. accès à /admin avec un compte utilisateur normal.
+
+Corrige directement les erreurs trouvées.
